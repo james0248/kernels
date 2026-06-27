@@ -26,13 +26,9 @@ def benchmark(size: int, provider: str):
     quantiles = [0.5, 0.2, 0.8]
 
     if provider == "torch":
-        ms, min_ms, max_ms = triton.testing.do_bench(
-            lambda: x + y, quantiles=quantiles
-        )  # pyright: ignore[reportGeneralTypeIssues]
+        ms, min_ms, max_ms = triton.testing.do_bench(lambda: x + y, quantiles=quantiles)
     elif provider == "triton":
-        ms, min_ms, max_ms = triton.testing.do_bench(
-            lambda: add(x, y), quantiles=quantiles
-        )  # pyright: ignore[reportGeneralTypeIssues]
+        ms, min_ms, max_ms = triton.testing.do_bench(lambda: add(x, y), quantiles=quantiles)
     else:
         raise ValueError(f"unknown provider: {provider}")
 
@@ -42,4 +38,4 @@ def benchmark(size: int, provider: str):
 
 
 if __name__ == "__main__":
-    benchmark.run(print_data=True, show_plots=True)
+    benchmark.run(print_data=True, show_plots=True, save_path="outputs")

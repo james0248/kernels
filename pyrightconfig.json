@@ -4,5 +4,9 @@
   "extraPaths": [
     ".triton-src"
   ],
-  "reportMissingModuleSource": "none"
+  "reportMissingModuleSource": "none",
+  "ignore": [
+    "src/kernels/ops",
+    "src/kernels/benchmarks"
+  ]
 }
