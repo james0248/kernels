@@ -31,8 +31,10 @@ uv sync --extra gpu
 uv run python -m kernels.benchmarks.<name>
 ```
 
-Triton has no macOS wheels, so it's gated to Linux by a `sys_platform` marker in the
-`gpu` extra — `uv sync` never fails on the Mac. `vendor-triton.sh` shallow-clones
+On the GPU box torch installs the CUDA 12.8 wheel (`pytorch-cu128` index); the Mac
+gets the default CPU/MPS build. Triton has no macOS wheels, so it's gated to Linux by
+a `sys_platform` marker in the `gpu` extra — `uv sync` never fails on the Mac.
+`vendor-triton.sh` shallow-clones
 Triton's Python source into `.triton-src/` (gitignored) for autocomplete only; rerun
 it after a fresh clone or a Triton bump.
 
